@@ -15,7 +15,7 @@ export const PosterCarousel = ({ height = 440, movies }: Propiedades) => {
         <View style={{ height }}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {
-                    movies.map(peli => <MoviePoster   key={peli.id} movie={peli} ></MoviePoster>)
+                    movies.map(peli => <MoviePoster key={peli.id} movie={peli} ></MoviePoster>)
                 }
             </ScrollView>
         </View>

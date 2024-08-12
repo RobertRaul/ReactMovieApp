@@ -3,8 +3,11 @@ import { Movie } from '../../core/models/movie.model'
 import * as UseCases from '../../core/use-cases'
 import { movieDBFetcher } from '../../config/adapters/movieDB.adapter'
 
+let curentPage = 1;
 
 export const useMovies = () => {
+
+
 
 
     const [isLoading, setisLoading] = useState(true)
@@ -45,12 +48,12 @@ export const useMovies = () => {
 
         setisLoading(false);
 
-        console.log({
-            nowPlayingMovies,
-            moviesPopularMovies,
-            topRatedMovies,
-            upcomingMovies,
-        })
+        // console.log({
+        //     nowPlayingMovies,
+        //     moviesPopularMovies,
+        //     topRatedMovies,
+        //     upcomingMovies,
+        // })
     }
 
     return {
@@ -59,6 +62,16 @@ export const useMovies = () => {
         toprated,
         upcoming,
         isLoading,
+
+        //metodos
+        popularNextPage: async () => {
+            curentPage++;
+            const popularMovies = await UseCases.moviesPopularUseCase(movieDBFetcher,{
+                page:curentPage,
+            })
+
+            setPopular(prev => [...prev,...popularMovies])
+        }
     }
 
 }

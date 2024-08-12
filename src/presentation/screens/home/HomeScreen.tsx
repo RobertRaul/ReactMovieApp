@@ -10,7 +10,7 @@ export const HomeScreen = () => {
 
 
   const { top } = useSafeAreaInsets();
-  const { isLoading, nowPlaying, popular , toprated,upcoming,} = useMovies();
+  const { isLoading, nowPlaying, popular , toprated,upcoming,popularNextPage} = useMovies();
 
   if (isLoading) {
     return (<Text>Cargando...</Text>)
@@ -22,7 +22,7 @@ export const HomeScreen = () => {
         {/*Carrucel principal*/}
         <PosterCarousel movies={nowPlaying} />
         {/*Carrucel de populares*/}
-        <HorizontalCarousel movies={popular} title={"Populares"} />
+        <HorizontalCarousel movies={popular} title={"Populares"} loadNextPage={popularNextPage} />
         {/*Carrucel de populares*/}
         <HorizontalCarousel movies={toprated} title={"Mejor Calificadas"} />
         {/*Carrucel de populares*/}
